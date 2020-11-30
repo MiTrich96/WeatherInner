@@ -15,7 +15,7 @@ function loadApplicationBackground() {
 
     sendRequest('GET', requestUrl)
         .then(data => {
-            const appImageWrap = document.querySelector('.current_page');
+            const appImageWrap = document.querySelector('.application_image');
             appImageWrap.style.backgroundImage = `URL(${data.urls.regular})`;
         })
         .catch(error => console.log(error));
