@@ -73,9 +73,7 @@ function changeDegree() {
     else {
         storage.saveToStorage('degree','ce');
     }
-    const degreeBlock = document.querySelector('.change_degree');
-    chooseLanguage();
-    degreeBlock.innerHTML = text.celcium;
+    createPages();
 }
 
 function changeImage() {

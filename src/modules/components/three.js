@@ -87,7 +87,10 @@ function getCoordinates() {
         .then(data => {
             loadTextData(data);
         })
-        .catch(error => console.log(error));
+        .catch(error => {
+            storage.saveToStorage('city','Gomel');
+            getCoordinates();
+        });
 }
 
 function loadTextData(result) {
@@ -101,7 +104,10 @@ function loadTextData(result) {
             chooseLanguage(average);
             createBlock();
         })
-        .catch(error => console.log(error));
+        .catch(error => {
+            storage.saveToStorage('city','Gomel');
+            loadTextData();
+        });
 }
 
 function createBlock() {

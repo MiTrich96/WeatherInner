@@ -62,7 +62,10 @@ function loadData() {
             createBlock();
             loadMap(data);
         })
-        .catch(error => console.log(error));
+        .catch(error => {
+            storage.saveToStorage('city','Gomel');
+            loadData();
+        });
 }
 
 function createGeoPage() {

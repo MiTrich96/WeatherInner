@@ -2,7 +2,6 @@ import createControlPage from './control';
 import createTodayPage from './today';
 import createThreePage from './three';
 import createGeoPage from './geo';
-import loadApplicationBackground from './loadImage';
 
 function destroyPages() {
     let destroyPageBlock = document.getElementsByClassName('block');
@@ -14,7 +13,6 @@ function destroyPages() {
 }
 
 function createPages() {
-    loadApplicationBackground();
     destroyPages();
     
     createControlPage();
