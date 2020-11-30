@@ -29,7 +29,7 @@ function createBlock() {
     inner.classList.add('application_control');
     inner.classList.add('block');
     inner.innerHTML = `
-        <div class="geo block">
+        <div class="geo">
             <div class="geo_title">${text.location}</div>
             <div class="geo_coord">${text.coords}</div>
             <div class="geo_map">

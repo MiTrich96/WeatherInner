@@ -16,47 +16,25 @@
 */
 
 
-.application_wrap {
+.block {
+    margin-left: 10%;
+    width: 80%;
+    height: 70vh;
+    background-color: rgba(26,56,120, .7);
+    border-radius: 10px;
+    border: 1px solid rgb(181,184,189);
+}
+
+.current_page {
+    margin-top: -50px;
     width: 100%;
-    height: 100vh;
-    overflow: none;
+    height: 100%;
     position: relative;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 }
 
-.application_image {
-}
-
-/*HEADER START*/
-.application_header {
-    width: 100%;
-    height: 70px;
-    background-color: rgba(119, 122, 127, .7);
-    padding: 0 150px;
-}
-
-.header_menu {
-    display: inline-flex;
-    width: 100%;
-    justify-content: space-between;
-}
-
-.header_item {
-    width: 25%;
-    list-style-type: none;
-}
-
-.header_item_link {
-    display: inline-block;
-    width: 80%;
-    height: 50px;
-    
-    margin-top: 10px;
-}
-
-/*HEADER END*/
 
 /*GENERAL FOR PAGES START*/
 
@@ -76,18 +54,6 @@
     border: 1px solid rgb(22,38,71);
 }
 
-
-.main {
-    position: absolute;
-    top: 150px;
-    left: 10%;
-    width: 80%;
-    height: 70vh;
-    background-color: rgba(26,56,120, .7);
-    border-radius: 10px;
-    border: 1px solid rgb(181,184,189);
-}
-
 /*GENERAL FOR PAGES END*/
 
 /*ONE DAY STAT START*/
@@ -97,6 +63,7 @@
 
 .application_control {
     display: block;
+    padding-top: 50px;
 }
 
 .control_inner {
@@ -116,7 +83,7 @@
 }
 
 .control_search {
-    margin: 100px;
+    margin: 0 10%;
     margin-top: 50px;
 }
 
@@ -142,6 +109,8 @@
 /*WEATHER TODAY PAGE START*/
 
 .weather_today {
+    margin-top: -20px;
+    margin-bottom: 100px;
 }
 
 .weather_today_wrap {
@@ -164,7 +133,6 @@
 
 .today_left {
     position: absolute;
-    top: 100px;
     left: 200px;
     text-align: center;
     
@@ -182,7 +150,6 @@
 
 .today_right {
     position: absolute;
-    top: 100px;
     right: 200px;
     width: 30%;
     line-height: 50px;
@@ -198,9 +165,6 @@
 /*WEATHER TODAY PAGE END*/
 
 /*WEATHER THREE PAGE START*/
-
-.weather_three {
-}
 
 .three_top {
     width: 80%;
@@ -271,26 +235,17 @@
 }
 
 .geo_map {
+    border: 1px solid rgb(22,38,71);
     width: 80%;
     height: 250px;
     margin: 10px 10% 0;
 }
-
-.geo_map > iframe {
-    
-    width: 100%;
-    height: 250px;
-}
-
 
 /*GEO PAGE END*/
 
 .active_button {
     background-color: rgb(22,38,71);
     border: 1px solid rgb(22,38,71);
-}
-
-.block {
 }
 
 .favicon {

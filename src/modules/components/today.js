@@ -71,6 +71,21 @@ function getDate() {
     date.innerHTML = `${dayOfWeek} ${day.getDate()} ${month}`;
 }
 
+function getCurrentTime() {
+    const date = new Date();
+    const today = document.querySelector('.today_time');
+    today.innerHTML = `${String(date.getHours()).length === 1 ? '0' + date.getHours() : date.getHours()}:${String(date.getMinutes()).length === 1 ? '0' + date.getMinutes() : date.getMinutes()}:${String(date.getSeconds()).length === 1 ? '0' + date.getSeconds() : date.getSeconds()}`;
+}
+
+let timer;
+function setTimer() {
+    setTimeout(() => {
+        if (document.querySelector('.today_time') !== null) {
+            timer = setInterval(getCurrentTime, 1000);
+        }
+    }, 500);
+}
+
 function loadTextData() {
     let city = storage.loadFromStorage('city');
     if (city === "Homyel'") city = 'Gomel';
@@ -94,7 +109,7 @@ function createBlock() {
     inner.classList.add('application_control');
     inner.classList.add('block');
     inner.innerHTML = `
-        <div class="weather_today block">
+        <div class="weather_today">
             <div class="weather_today_wrap">
                 <div class="today_top">
                     <div class="today_city">${text.city}</div>
@@ -133,6 +148,7 @@ function createBlock() {
 
 function createTodayPage() {
     loadTextData();
+    setTimer();
 }
 
 export default createTodayPage;

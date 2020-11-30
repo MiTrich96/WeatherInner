@@ -1,6 +1,6 @@
 import storage from './../storage/storage';
-import createHeader from './header';
 import loadApplicationBackground from './loadImage';
+import createPages from './createPages';
 
 let text;
 
@@ -62,8 +62,7 @@ function changeLanguage() {
     else {
         storage.saveToStorage('language','RU') 
     }
-    createHeader();
-    createControlPage();
+    createPages();
 }
 
 function changeDegree() {
@@ -74,7 +73,9 @@ function changeDegree() {
     else {
         storage.saveToStorage('degree','ce');
     }
-    createControlPage();
+    const degreeBlock = document.querySelector('.change_degree');
+    chooseLanguage();
+    degreeBlock.innerHTML = text.celcium;
 }
 
 function changeImage() {
@@ -84,8 +85,7 @@ function changeImage() {
 function searchLocation() {
     const input = document.querySelector('.search_geo');
     storage.saveToStorage('city', input.value);
-    const controlButton = document.querySelector('.today');
-    controlButton.click();
+    createPages();
 }
 
 function createControlPage() {
@@ -100,9 +100,6 @@ function createControlPage() {
 
     let searchButton = document.querySelector('.search_geo_send');
     if (searchButton) searchButton.removeEventListener('click', searchLocation);
-
-    let destroyPageBlock = document.querySelector('.block');
-    if (destroyPageBlock) destroyPageBlock.parentNode.removeChild(destroyPageBlock);
 
     createBlock();
 

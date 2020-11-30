@@ -110,7 +110,7 @@ function createBlock() {
     inner.classList.add('application_control');
     inner.classList.add('block');
     inner.innerHTML = `
-        <div class="weather_three block">
+        <div class="weather_three">
             <div class="three_top">
                 <div class="three_title">${text.title}</div>
                 <div class="three_day">${text.day}</div>

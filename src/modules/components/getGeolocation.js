@@ -1,6 +1,5 @@
 import sendRequest from './../data/queryApi';
 import storage from './../storage/storage';
-import createHeader from './header';
 import createPages from './createPages';
 
 function loadGeolocation() {    
@@ -12,7 +11,6 @@ function loadGeolocation() {
             storage.saveToStorage('city', data.city);
             storage.createStorage('degree', 'ce');
 
-            createHeader();
             createPages();
         })
         .catch(error => {
@@ -20,7 +18,7 @@ function loadGeolocation() {
             storage.createStorage('language', 'RU');
             storage.saveToStorage('city', 'Gomel');
             storage.createStorage('degree', 'ce');
-            createHeader();
+
             createPages();
         });
 }
