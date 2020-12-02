@@ -15,10 +15,11 @@ function destroyPages() {
 function createPages() {
     destroyPages();
     
-    createControlPage();
-    createTodayPage();
-    createThreePage();
-    createGeoPage();
+    Promise.resolve()
+    .then(createControlPage)
+    .then(createTodayPage)
+    .then(createThreePage)
+    .then(createGeoPage);
 }
 
 export default createPages;

@@ -41,13 +41,19 @@ function createBlock() {
 }
 
 function loadMap(data) {
-    mapboxgl.accessToken = 'pk.eyJ1IjoibWl0cmljaDk2IiwiYSI6ImNraHp4aDg3ZjBqdXoydW10MmZmbTN3YzYifQ.LK1DYWREy9-6shJT_XXjLw';
-    const map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v11', 
-        center: [data.results[data.results.length - 1].bounds.northeast.lng, data.results[data.results.length - 1].bounds.northeast.lat], 
-        zoom: 9 
-    });
+    try {
+        mapboxgl.accessToken = 'pk.eyJ1IjoibWl0cmljaDk2IiwiYSI6ImNraHp4aDg3ZjBqdXoydW10MmZmbTN3YzYifQ.LK1DYWREy9-6shJT_XXjLw';
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11', 
+            center: [data.results[data.results.length - 1].bounds.northeast.lng, data.results[data.results.length - 1].bounds.northeast.lat], 
+            zoom: 9 
+        });
+    }
+    catch (error) {
+        console.log(error);
+    }
+    
 }
 
 function loadData() {

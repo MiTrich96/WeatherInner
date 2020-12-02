@@ -4,6 +4,7 @@ import waterImage from './../../images/water.png';
 import umbrellaImage from './../../images/umbrella.png';
 import storage from './../storage/storage';
 import sendRequest from './../data/queryApi';
+import errorPage from './../error';
   
 let text;
 
@@ -98,10 +99,9 @@ function loadTextData() {
             getDate();
         })
         .catch(error => {
-            const inputBlock = document.querySelector('.search_geo');
-            inputBlock.value = `${inputBlock.value} not found`;
             storage.saveToStorage('city','Gomel');
             loadTextData();
+            errorPage();
         });
 }
 

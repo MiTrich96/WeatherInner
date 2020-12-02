@@ -25,6 +25,36 @@
     border: 1px solid rgb(181,184,189);
 }
 
+.application_wrap {
+    position: relative;
+}
+
+.error_page {
+    position: absolute;
+    top: 150px;
+    text-align: center;
+    padding: 100px 0;
+    font-size: 80px;
+    font-weight: 700;
+    background-color: rgb(28,27,32);
+    color: rgb(181,184,189);
+
+    animation-duration: 0.2s;  
+    animation-fill-mode: forwards;
+    animation-name: fadeInDown; 
+}
+ 
+@keyframes fadeInDown { 
+    0% {                
+        opacity: 0;
+        transform: translate3d(0px, -100%, 0px);
+    }
+    100% {              
+        opacity: 1;
+        transform: none;
+    }
+}
+
 .application_image {
     margin-top: -50px;
     width: 98.7vw;
@@ -165,47 +195,42 @@
 
 /*WEATHER THREE PAGE START*/
 
-.three_top {
-    width: 80%;
-    margin: 20px 10% 0;
-    height: 70px;
-    
+.weather_three_top {
     border-radius: 5px;
     border: 1px solid rgb(181,184,189);
     background-color: rgb(28,27,32);
     color: rgb(181,184,189);
-    display: inline-flex;
-    padding: 10px;
-}
-
-.three_title {
-    width: 50%;
+    width: 80%;
+    margin: 50px 10% 20px;
+    height: 100px;
+    font-size: 40px;
+    font-weight: 700;
     text-align: center;
-    font-size: 30px;
+    padding-top: 20px;
 }
 
 .three_day {
-    width: 50%;
     text-align: center;
     font-size: 30px;
 }
 
-.three_wrap {
+.three_wrap_list {
+    display: inline-flex;
+    width: 100%;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.three_wrap_item {
     border-radius: 5px;
     border: 1px solid rgb(181,184,189);
     background-color: rgb(28,27,32);
     color: rgb(181,184,189);
-    display: inline-flex;
-    justify-content: space-around;
-    padding: 70px 0;
-    margin: 10px 10%;
-    width: 80%;
+    padding: 20px;
+    margin: 10px 0;
+    width: 32%;
     height: 200px;
-}
-
-.three_wrap > div {
-    width: 30%;
-    text-align: center;
+    list-style-type: none;
 }
 
 
