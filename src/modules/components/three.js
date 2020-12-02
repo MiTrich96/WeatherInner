@@ -17,12 +17,12 @@ function getAverage(data) {
     let countDays = 3;
     let sum;
     for (let day = 0;day < countDays;day++) {
-        sum = (data[day].temp[0].min.value + data[day].temp[1].max.value) / 2.0;
-        average.degree[day] = sum;
-        sum = (data[day].humidity[0].min.value + data[day].humidity[1].max.value) / 2.0;
-        average.water[day] = sum;
-        sum = (data[day].wind_speed[0].min.value + data[day].wind_speed[1].max.value) / 2.0;
-        average.wind[day] = sum;
+        sum = (data[day].temp[0].min.value + data[day].temp[1].max.value) / 2;
+        average.degree[day] = sum.toFixed(3);
+        sum = (data[day].humidity[0].min.value + data[day].humidity[1].max.value) / 2;
+        average.water[day] = sum.toFixed(3);
+        sum = (data[day].wind_speed[0].min.value + data[day].wind_speed[1].max.value) / 2;
+        average.wind[day] = sum.toFixed(3);
     }
 
     let options = { weekday: 'long'};
@@ -56,12 +56,12 @@ function chooseLanguage(average) {
             title: 'Средние показатели на 3 дня',
             day: [...average.days],
             temperature: 'Ощущаемая температура: ',
-            numberDegree: [...average.degree.toFixed(3)],
+            numberDegree: [...average.degree],
             degree: '°C',
             windTitle: 'Скорость ветра: ',
-            wind: `${[...average.wind.toFixed(3)]} км/ч`,
+            wind: [...average.wind],
             waterTitle: 'Относительная влажность: ',
-            water: `${[...average.water.toFixed(3)]} %`
+            water: [...average.water]
         }
     }
     else {
@@ -69,12 +69,12 @@ function chooseLanguage(average) {
             title: 'Average data for 3 days',
             day: [...average.days],
             temperature: 'Perceived temperature: ',
-            numberDegree: [...average.degree.toFixed(3)],
+            numberDegree: [...average.degree],
             degree: '°C',
             windTitle: 'Speed of wind: ',
-            wind: `${[...average.wind.toFixed(3)]} km/h`,
+            wind: [...average.wind],
             waterTitle: 'Relative humidity: ',
-            water: `${[...average.water.toFixed(3)]} %`
+            water: [...average.water]
         }
     }
 
@@ -96,12 +96,14 @@ function getCoordinates() {
         })
         .catch(error => {
             storage.saveToStorage('city','Gomel');
+            console.log(error);
         });
 }
 
 function loadTextData(result) {
     let city = storage.loadFromStorage('city');
     if (city === "Homyel'") city = 'Gomel';
+
     const requestUrl = `https://api.climacell.co/v3/weather/forecast/daily?lat=${result.results[result.results.length - 1].bounds.northeast.lat}&lon=${result.results[result.results.length - 1].bounds.northeast.lng}&unit_system=si&start_time=now&fields=feels_like%2Ctemp%2Chumidity%2Cwind_speed%2Cweather_code&apikey=qEplSE2RzKngcBiPOCSCebLFLzMbcLg0`;
 
     sendRequest('GET', requestUrl)
@@ -117,9 +119,8 @@ function loadTextData(result) {
 }
 
 function createItem(number) {
-    const block = document.createElement('li');
-    block.classList.add('three_wrap_item');
-    block.innerHTML = `
+    const block = `
+        <li class="three_wrap_item">
             <div class="three_day">${text.day[number]}</div>
             <div class="item_display">
                 <div class="today_apparent">
@@ -129,15 +130,16 @@ function createItem(number) {
                 </div>
                 <div class="today_wind">
                     <span class="today_name">${text.windTitle}</span>
-                    <span class="today_stat apparent">${text.wind[number]}</span>
+                    <span class="today_stat apparent">${text.wind[number]} km/h</span>
                     <img class="favicon" src="${windImage}"/>
                 </div>
                 <div class="today_water">
                     <span class="today_name">${text.waterTitle}</span>
-                    <span class="today_stat apparent">${text.water[number]}</span>
+                    <span class="today_stat apparent">${text.water[number]} %</span>
                     <img class="favicon" src="${waterImage}"/>
                 </div>
             </div>
+        </li>
     `;
 
     return block;
