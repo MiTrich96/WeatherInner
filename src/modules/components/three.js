@@ -3,6 +3,8 @@ import waterImage from './../../images/water.png';
 import umbrellaImage from './../../images/umbrella.png';
 import storage from './../storage/storage';
 import sendRequest from './../data/queryApi';
+import changeSpeed from './../controller/changeSpeed';
+import changeDegree from './../controller/changeDegree';
 
 let text;
 
@@ -18,11 +20,11 @@ function getAverage(data) {
     let sum;
     for (let day = 0;day < countDays;day++) {
         sum = (data[day].temp[0].min.value + data[day].temp[1].max.value) / 2;
-        average.degree[day] = sum.toFixed(3);
+        average.degree[day] = changeDegree(sum);
         sum = (data[day].humidity[0].min.value + data[day].humidity[1].max.value) / 2;
-        average.water[day] = sum.toFixed(3);
+        average.water[day] = sum.toFixed(2);
         sum = (data[day].wind_speed[0].min.value + data[day].wind_speed[1].max.value) / 2;
-        average.wind[day] = sum.toFixed(3);
+        average.wind[day] = changeSpeed(sum);
     }
 
     let options = { weekday: 'long'};
@@ -50,6 +52,7 @@ function getAverage(data) {
 
 function chooseLanguage(average) {
     let language = storage.loadFromStorage('language');
+    let degree = storage.loadFromStorage('degree');
 
     if (language === 'RU' || language === 'BY') {
         text = {
@@ -57,7 +60,7 @@ function chooseLanguage(average) {
             day: [...average.days],
             temperature: 'Ощущаемая температура: ',
             numberDegree: [...average.degree],
-            degree: '°C',
+            degree: `${degree==='ce'?' °C':' °F'}`,
             windTitle: 'Скорость ветра: ',
             wind: [...average.wind],
             waterTitle: 'Относительная влажность: ',
@@ -70,7 +73,7 @@ function chooseLanguage(average) {
             day: [...average.days],
             temperature: 'Perceived temperature: ',
             numberDegree: [...average.degree],
-            degree: '°C',
+            degree: `${degree==='ce'?' °C':' °F'}`,
             windTitle: 'Speed of wind: ',
             wind: [...average.wind],
             waterTitle: 'Relative humidity: ',
@@ -130,7 +133,7 @@ function createItem(number) {
                 </div>
                 <div class="today_wind">
                     <span class="today_name">${text.windTitle}</span>
-                    <span class="today_stat apparent">${text.wind[number]} km/h</span>
+                    <span class="today_stat apparent">${text.wind[number]} m/s</span>
                     <img class="favicon" src="${windImage}"/>
                 </div>
                 <div class="today_water">

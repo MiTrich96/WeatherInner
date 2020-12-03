@@ -5,6 +5,7 @@ import umbrellaImage from './../../images/umbrella.png';
 import storage from './../storage/storage';
 import sendRequest from './../data/queryApi';
 import errorPage from './../error';
+import changeSpeed from './../controller/changeSpeed';
   
 let text;
 
@@ -23,7 +24,7 @@ function chooseLanguage(data) {
             numberDegree: `${degree==='ce'?data.current.temp_c:data.current.temp_f}`,
             degree: `${degree==='ce'?' °C':' °F'}`,
             windTitle: 'Скорость ветра: ',
-            wind: `${data.current.wind_kph} км/ч`,
+            wind: `${changeSpeed(data.current.wind_kph)} м/с`,
             waterTitle: 'Относительная влажность: ',
             water: `${data.current.humidity} %`
         }
@@ -38,7 +39,7 @@ function chooseLanguage(data) {
             numberDegree: `${degree==='ce'?data.current.temp_c:data.current.temp_f}`,
             degree: `${degree==='ce'?' °C':' °F'}`,
             windTitle: 'Speed of wind: ',
-            wind: `${data.current.wind_kph} km/h`,
+            wind: `${changeSpeed(data.current.wind_kph)} m/s`,
             waterTitle: 'Relative humidity: ',
             water: `${data.current.humidity} %`
         }
